@@ -57,7 +57,7 @@
         android:layout_marginStart="32dp"
         android:ems="8"
         android:hint="Bill Aount"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/tvBassLable"
         app:layout_constraintStart_toEndOf="@+id/tvBassLable"
@@ -91,4 +91,5 @@
         app:layout_constraintStart_toStartOf="@+id/tvTipAmount"
         app:layout_constraintTop_toTopOf="@+id/tvTotal"
         tools:text="103" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

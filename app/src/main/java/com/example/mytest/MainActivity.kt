@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         })
         etBaseAmount.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(p0: Editable?) {
@@ -50,11 +49,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun computTipTotle() {
+        if (etBaseAmount.text.isEmpty()){
+            tvTipAmount.text=""
+            tvTotalAmount.text=""
+            return
+        }
         val bassAmount = etBaseAmount.text.toString().toDouble()
         val tipPercent =seekBarTip.progress
         val tipAmount = bassAmount * tipPercent /100
         val totalAmount = bassAmount + tipAmount
-        tvTipAmount.text = tipAmount.toString()
-        tvTotalAmount.text= totalAmount.toString()
-60    }
+        tvTipAmount.text ="%.2f".format(tipAmount)
+        tvTotalAmount.text= "%.2f".format(totalAmount)
+    }
 }
