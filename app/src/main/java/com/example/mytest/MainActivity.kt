@@ -2,6 +2,8 @@ package com.example.mytest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import android.widget.SeekBar
@@ -29,11 +31,30 @@ class MainActivity : AppCompatActivity() {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
             Log.i(TAG, "onProgressChanged $p1")
                 tvPercentLab.text = "$p1%"
+                computTipTotle()
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {}
             override fun onStopTrackingTouch(p0: SeekBar?) {}
         })
-        
+        etBaseAmount.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(p0: Editable?) {
+            Log.i(TAG, "after chag $p0")
+                computTipTotle()
+            }
+        })
     }
+
+    private fun computTipTotle() {
+        val bassAmount = etBaseAmount.text.toString().toDouble()
+        val tipPercent =seekBarTip.progress
+        val tipAmount = bassAmount * tipPercent /100
+        val totalAmount = bassAmount + tipAmount
+        tvTipAmount.text = tipAmount.toString()
+        tvTotalAmount.text= totalAmount.toString()
+60    }
 }
